@@ -19,18 +19,16 @@ public class LerTransacoesReaderConfig {
 
     @Bean
     public JdbcCursorItemReader<Transacao> lerTransacoesReader(
-            @Qualifier("appDataSource") DataSource dataSource){
-            return new JdbcCursorItemReaderBuilder<Transacao>()
-                    .name("lerTransacoesReader")
-                    .dataSource(dataSource)
-                    .sql("select * from transacao join cartao_credito using (numero_cartao_credito) order by numero_carto_credito")
-                    .rowMapper(rowMapperTransacao())
-                    .build();
-
+            @Qualifier("appDataSource") DataSource dataSource) {
+        return new JdbcCursorItemReaderBuilder<Transacao>()
+                .name("lerTransacoesReader")
+                .dataSource(dataSource)
+                .sql("select * from transacao join cartao_credito using (numero_cartao_credito) order by numero_cartao_credito")
+                .rowMapper(rowMapperTransacao())
+                .build();
     }
 
     private RowMapper<Transacao> rowMapperTransacao() {
-
         return new RowMapper<Transacao>() {
 
             @Override
@@ -50,6 +48,7 @@ public class LerTransacoesReaderConfig {
 
                 return transacao;
             }
+
         };
     }
 

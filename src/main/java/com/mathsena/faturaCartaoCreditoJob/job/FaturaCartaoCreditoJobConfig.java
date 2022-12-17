@@ -17,8 +17,9 @@ public class FaturaCartaoCreditoJobConfig {
     private JobBuilderFactory jobBuilderFactory;
 
     @Bean
-    public Job faturaCartaoCreditoJob(Step faturaCartaoCreditoStep){
-        return jobBuilderFactory.get("faturaCartaoCreditoJob")
+    public Job faturaCartaoCreditoJob(Step faturaCartaoCreditoStep) {
+        return jobBuilderFactory
+                .get("faturaCartaoCreditoStep")
                 .start(faturaCartaoCreditoStep)
                 .incrementer(new RunIdIncrementer())
                 .build();
